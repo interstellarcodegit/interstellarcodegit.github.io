@@ -101,10 +101,11 @@ const Footer = ()=>{
                     <h3 className='ft-row-title'>Learn</h3>
                     <ul className='ft-ul'>
                         
-                        <li><a href='#'><i className='fa fa-desktop'></i>Video editing</a></li>
+                        <li><a href='#'><i className='fa fa-video'></i>Video editing</a></li>
                         <li><a href='#'><i className='fa fa-camera'></i>Photography</a></li>
                         <li><a href='#'><i className='fa fa-code'></i>Software Dev</a></li>
-                        <li><a href='#'><i className='fa fa-desktop'></i>other</a></li>
+                        <li><a href='#'><i className='fa fa-desktop'></i>Graphics</a></li>
+                        <li><a href='#'><i className='fa fa-meh blank'></i>Other</a></li>
                     </ul>
                 </div>
                 <div className='ft-row'>
@@ -123,6 +124,18 @@ const Footer = ()=>{
             <p className='ft-info' >Interstellar code &copy; 2020</p>
         </div>
     );
+}
+const feedImages=(props)=>{
+    return (
+        <div className='feed-main'>
+            <h1 className='feed-title'>,....</h1>
+            <div className='feed-flex'>
+                <div className='feed-img-div'>
+                    < img src="props.img-url" className='feed-img' />
+                </div>
+            </div>
+        </div>
+    )
 }
 ReactDOM.render(<Main/>, entry)
 gsap.to(".card-bd", {duration:2, x:20});
