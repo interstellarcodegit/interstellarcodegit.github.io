@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css" >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Notehandy</title>
+  <script type="text/javascript" src="./handwriting.canvas.js"  ></script>
+</head>
+<body>
+  <nav>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <ul>
+      <li><a href=""> > Home</a></li>
+      <li><a href=""> > Notes</a></li>
+      <li><a href=""> > About</a></li>
+      <li><a href=""> > Contact</a></li>
+    </ul>
+  </nav>
+  <main>
+    <input id ="fontSize"type="range" min="0"  max ='100' value="1"/>
+    <div class="out">
+      
+    </div>
+    <textarea class="out_textarea">
+      
+    </textarea>
+  
+  
+    <div>
+         <div class="buttons">
+             <div class="size">
+               Pen Size<input value=2 type="range" id='pen_size' min=0, max=100></div>
+           
+        <button value="append" onclick="recog()">Recognize</button>
+
+      
+        <button onclick="clearit()">Clear</button>
+        <button onclick="redo()">Redo</button>
+        <button onclick="undo()">undo</button>
+      </div>
+    <canvas class='canva' id="can"  width="1000"  height="800"style=" cursor: crosshair;"></canvas>
+
+   
+    </div>
+  </main>
+      
+
+
+<script>
+    var anchor = document.querySelectorAll('a')
+    var dots = document.querySelector('.dots');
+    var nav = document.querySelector('nav');
+    var ul = document.querySelector('ul');
+    var can1 = new handwriting.Canvas(document.getElementById("can"));
+    var SizeOfFont= document.querySelector('#fontSize');
+   var  canvas = document.querySelector('#can');
+    var options = {
+    width : window.innerWidth, //int, width of the writing area, default: undefined
+    height : window.innerHeight/3, //int, he
+    language : "en", //string, language of input trace, default: "zh_TW"
+    //int, number of words of input trace, default: undefined
+    numOfReturn : 1, //int, number of maximum returned results, default: undefined
+    };
+    var notes = []
+    var out = document.querySelector('.out');
+    var out_text = document.querySelector('.out_textarea');
+    
+    var sizeofPen = document.querySelector('#pen_size');
+    can1.setLineWidth(sizeofPen.value);
+    SizeOfFont.addEventListener('input', ()=>{
+      out.style['font-size'] =`${SizeOfFont.value}px`
+      
+    })
+    dots.addEventListener('click', ()=>{
+      nav.classList.toggle('nav_visible')
+      ul.classList.toggle('ul_visible')
+      anchor.forEach(e=>e.classList.toggle('a_visible'))
+    })
+    sizeofPen.addEventListener('input', ()=>{
+      console.log(sizeofPen.value);
+      can1.setLineWidth(sizeofPen.value);
+
+      
+    })
+    
+  function recog(){
+    can1.recognize()
+    
+  }
+
+        //Set callback function
+    can1.setCallBack(function(data, err) {
+        if(err) throw err;
+        else {
+            out_text.value += data;
+            out.innerHTML = out_text.value
+            can1.erase()
+        }
+    });
+    
+  
+    //Set line width shown on the canvas element (default: 3)
+    
+    //Set options
+    can1.setOptions(
+        {
+            language: "en",
+            numOfReturn: 1,
+            width : window.innerWidth, 
+            height:window.innerHeight/3,
+        }
+    );
+
+    //recognize captured trace
+    can1.set_Undo_Redo(true, false);
+
+    //turn on both functionalities
+    can1.set_Undo_Redo(true, true);
+	 function undo(){
+	   can1.undo();
+    //set canvas and stored trace to the last state (stroke)
+
+    
+    
+	 }
+	 function redo(){
+	   
+    can1.redo();
+    
+	 }
+    //Clear canvas, captured trace, and stored steps
+    function clearit(){
+      
+      can1.erase()
+      
+    }
+</script>
+
+</body>
+</html>
