@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
+import gsap from "gsap";
 const entry = document.querySelector("#main");
 
 const Main = () => {
@@ -11,20 +11,72 @@ const Main = () => {
       <Nav />
       <div className="main_stuff">
         <Preamble />
+        <Spacer />
         <AboutPage />
+        <Spacer />
         <Pastwork />
+        <Spacer />
         <PortfolioPage />
+        <Spacer />
         <ContactPage />
       </div>
       <Footer />
     </div>
   );
 };
-
+var i = 1;
+var nav_animation_duration = 0.5;
 const Nav = () => {
+  // const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {
+    document.querySelector(".nav_toggler").addEventListener("click", () => {
+      if (i == 0) {
+        gsap.to(".bar_one", {
+          duration: nav_animation_duration,
+          rotateZ: 0,
+          y: 0,
+        });
+        gsap.to(".bar_three", {
+          duration: nav_animation_duration,
+          rotateZ: 0,
+          y: 0,
+        });
+        gsap.to(".nav-main", {
+          duration: nav_animation_duration * 2,
+          height: "7vh",
+        });
+        document.querySelector(".bar_center").style.display = "block";
+        i = 1;
+      } else {
+        gsap.to(".bar_one", {
+          duration: nav_animation_duration,
+          rotateZ: 45,
+          y: -3,
+        });
+        gsap.to(".nav-main", {
+          duration: nav_animation_duration * 1,
+          height: "100vh",
+        });
+        gsap.to(".bar_three", {
+          duration: nav_animation_duration,
+          rotateZ: -45,
+          y: -12.5,
+        });
+        document.querySelector(".bar_center").style.display = "none";
+        i = 0;
+      }
+    });
+  }, []);
   return (
     <nav className="nav-main">
-      <img src="images/log.png" className="logo" />
+      <div className="top_logo_div">
+        <img src="images/log.png" className="logo" />
+        <div className="nav_toggler">
+          <div className="bar bar_one"></div>
+          <div className="bar bar_center"></div>
+          <div className="bar bar_three"></div>
+        </div>
+      </div>
       <ul className="nav-items">
         <li>
           <a id="anchor" href="#" className="active">
@@ -66,26 +118,42 @@ const Preamble = () => {
     <div className="preambles-main">
       <div className="wrap_div">
         <div className="cover">
-          <h1 id="pre-header">His name is Kelvin Ngeno..... </h1>
+          <div className="pre-header-div">
+            <h1 id="pre-header">Kelvin Ng'eno </h1>
+            <div className="skills_header">
+              <h3 className="header_skill">
+                <div className="seperator2"></div>Software Developer
+              </h3>
+              <div className="seperator"></div>
+              <h3 className="header_skill">
+                <div className="seperator2"></div>Designer
+              </h3>
+              <div className="seperator"></div>
+              <h3 className="header_skill">
+                <div className="seperator2"></div>App Developer
+              </h3>
+            </div>
+          </div>
+
           <br />
           <div className="thisis">
-            <p className="pr-info">And this is </p>{" "}
+            <p className="pr-info">And this is </p>
             <span className="name_span">Interstellar Code</span>
           </div>
           <div className="top_description">
-            <p className="top_top_description">
+            {/* <p className="top_top_description">
               I am a <span className="career-span">web developer</span>
               revolutionalizing the <span className="field_span">internet</span>
-            </p>
+            </p> */}
             <p className="lower_top_description">
-              I'm a Software Engineer and Internet Entrepreneur I advance
-              technology by contributing to open source I am a creator,
-              instructor, mentor and consultant I teach GraphQL and Ruby on
-              Rails at GraphQL on Rails and consult for the same technologies
+              I'm a Software Engineer and Internet Entrepreneur I do design, I
+              make apps for both iOS android and the web
+              <Spacer /> I am a content creator, a great instructor and mentor
+              {/* <span >I also occassionally make 3d animations </span> */}
             </p>
           </div>
         </div>
-        <TopSocialIcons />
+        <img className="about_image" src="../images/me.jpg" />
       </div>
     </div>
   );
@@ -98,7 +166,29 @@ const PageTop = (props) => {
     </div>
   );
 };
+const SkillItem = (props) => {
+  return (
+    <div className="skillItem">
+      <span className="skillName">{props.name}</span>
+    </div>
+  );
+};
 const AboutPage = () => {
+  const [ActiveSkill, setActiveSkill] = React.useState("");
+  const [ActiveSkillDesc, setActiveSkillDesc] = React.useState("");
+  const [visible, setVisible] = React.useState(false);
+  // React.useEffect(() => {}, [ActiveSkill]);
+  // const ActivatePopup = (skill, description) => {
+  //   // alert("yr");
+  //   setActiveSkill(skill);
+  //   setActiveSkillDesc(description);
+  //   console.log("set");
+  //   setVisible(true);
+  //   const xt = setTimeout(() => {
+  //     setVisible(false);
+  //     clearTimeout(xt);
+  //   }, 5000);
+  // };
   return (
     <div className="about">
       <PageTop page="About" />
@@ -122,7 +212,7 @@ const AboutPage = () => {
             <span className="many_more_span">many more</span>
           </p>
         </div>
-        <div className="about_image_div">
+        {/* <div className="about_image_div">
           <img className="about_image" src="../images/me.jpg" />
           <div className="email_div">
             <div className="email_wrap">
@@ -130,66 +220,327 @@ const AboutPage = () => {
               <div className="email_span_rule"></div>
             </div>
           </div>
+        </div> */}
+      </div>
+
+      <PageTop page="My Skills" />
+      <div
+        className="skillPopup"
+        style={{ display: visible ? "flex" : "none" }}
+      >
+        <div className="skillPopupMain">
+          <h3 className="popupTitle">{ActiveSkill}</h3>
+          <p className="popupDescription">{ActiveSkillDesc}</p>
+        </div>
+      </div>
+      <div className="skillsView">
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="Javascript"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="React "
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="Html"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="CSS"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="Python"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="Django"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="Sass"
+        />
+        <SkillItem
+          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+          name="React-Native"
+        />
+      </div>
+    </div>
+  );
+};
+const WorkDisplay = (props) => {
+  return (
+    <div className="work_display">
+      <div className="works_title_wrap_cover">
+        <div className="works_title_wrap">
+          <h2 className="works_title">
+            <h3 className="work_number">{props.number}</h3>
+            {props.title}
+          </h2>
+          <div className="works_title_bottom_rule"></div>
+        </div>
+      </div>
+      <div className="work_desc_wrap">
+        <p className="work_desc">{props.description}</p>
+
+        <div className="technologies">
+          <div className="tech_list">
+            {props.tech.map((e, i) => {
+              return <span className="tech_span">{e}</span>;
+            })}
+            <a href={props.to} className="external_link">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
+const desktopapps = [
+  {
+    title: "Notehandy Desktop",
+    description:
+      "An app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+  {
+    title: "Interstellar  Music",
+    description:
+      "A beautiful music desktop app with a beautiful app user interface which is fully interactive",
+  },
+];
+const Designs = [
+  {
+    title: "Repent app",
+    image: <img src="../images/web.jpg" />,
+    description: "A design for the repent app",
+  },
+  {
+    title: "My Portfolio",
+    image: <img src="../images/web.jpg" />,
+  },
+];
+
+const Apis = [
+  {
+    title: "NotehandyApp API",
+    description:
+      "An api made for a app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+  {
+    title: "NotehandyApp API",
+    description:
+      "An api made for a app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+
+  {
+    title: "NotehandyApp API",
+    description:
+      "An api made for a app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+
+  {
+    title: "Repent App API",
+    description:
+      "An api made for a app of The Ministry of Repentance  and Holiness that enables updates , and playing and saving & organisation of videos& audio on the cloud..It also enables messanging between the Sheep Of Christ of the Church",
+  },
+];
+const apps = [
+  {
+    title: "Notehandy",
+    description:
+      "An app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+  {
+    title: "Repent App",
+    description:
+      "An api made for a app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+
+  {
+    title: "flex chat",
+    description:
+      "An api made for a app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+  },
+
+  {
+    title: "Interstellar Code app",
+    description:
+      "An api made for a app of The Ministry of Repentance  and Holiness that enables updates , and playing and saving & organisation of videos& audio on the cloud..It also enables messanging between the Sheep Of Christ of the Church",
+  },
+];
 const Pastwork = () => {
+  const [activeList, setActiveList] = React.useState("web");
   return (
     <div className="past_work">
       <PageTop page="My Past Work" />
       <div className="past_work_main_page">
         <div className="works_list">
           <ul>
-            <li>
-              <a href="#">Web</a>
+            <li
+              onClick={(e) => {
+                setActiveList("web");
+              }}
+            >
+              <a>Web</a>
             </li>
-            <li>
-              <a href="#">Mobile Apps</a>
+            <li
+              onClick={(e) => {
+                setActiveList("apps");
+              }}
+            >
+              <a>Mobile Apps</a>
             </li>
-            <li>
-              <a href="#">APIs</a>
+            <li
+              onClick={(e) => {
+                setActiveList("apis");
+              }}
+            >
+              <a>APIs</a>
             </li>
-            <li>
-              <a href="#">Designs</a>
+            <li
+              onClick={(e) => {
+                setActiveList("designs");
+              }}
+            >
+              <a>Designs</a>
             </li>
-            <li>
-              <a href="#">Desktop Apps</a>
+            <li
+              onClick={(e) => {
+                setActiveList("desktopapps");
+              }}
+            >
+              <a>Desktop Apps</a>
             </li>
           </ul>
         </div>
         <div className="works_wrap">
-          <div className="scrolls_wrap">
-            <div className="works_side_scroll">
-              <div className="work_scroll_div"></div>
-            </div>
-          </div>
           <div className="works_main_view">
-            <div className="works_title_wrap_cover">
-              <div className="works_title_wrap">
-                <h2 className="works_title">
-                  <h3 className="work_number">01</h3>
-                  Website for Jipas Tensail Architectural
-                </h2>
-                <div className="works_title_bottom_rule"></div>
+            {activeList == "web" ? (
+              <div className="wrap_works_list">
+                <WorkDisplay
+                  to="#"
+                  tech={[
+                    "html",
+                    "css",
+                    "Javascript",
+                    "React",
+                    "Python",
+                    "Django",
+                  ]}
+                  number="01"
+                  title="Website for Jipas Tensail"
+                  description="Association of Lawyers and Technologists in Africa.
+
+Designed and created the website to help the association be visible on the internet and register new members."
+                />
+                <WorkDisplay
+                  to="#"
+                  tech={[
+                    "html",
+                    "css",
+                    "Javascript",
+                    "React",
+                    "Python",
+                    "Django",
+                  ]}
+                  number="02"
+                  title="Africa Lawyers Organisation"
+                  description="Association of Lawyers and Technologists in Africa."
+                />
+                <WorkDisplay
+                  to="#"
+                  tech={[
+                    "html",
+                    "css",
+                    "Javascript",
+                    "React",
+                    "Python",
+                    "Django",
+                  ]}
+                  number="03"
+                  title="Website for Jipas Tensail"
+                  description="Association of Lawyers and Technologists in Africa.
+Designed and created the website to help the association be visible on the internet and register new members."
+                />
               </div>
-            </div>
-            <p className="work_desc">
-              This is a website I designed and developed for Jipas Tensail
-              Architectural...a Architecturalcompany based in Nairobi,
-              Kenya..The designing and development of the website took about 1
-              month after which it was delivered...
-            </p>
+            ) : activeList == "apps" ? (
+              <div className="wrap_works_list">
+                {apps.map((e, i) => {
+                  return (
+                    <WorkDisplay
+                      to="#"
+                      tech={["React-Native", "Python", "Django"]}
+                      number={`0${i + 1}`}
+                      title={e.title}
+                      description={e.description}
+                    />
+                  );
+                })}
+              </div>
+            ) : activeList == "apis" ? (
+              <div className="wrap_works_list">
+                {Apis.map((e, i) => {
+                  return (
+                    <WorkDisplay
+                      to="#"
+                      tech={["React-Native", "Python", "Django"]}
+                      number={`0${i + 1}`}
+                      title={e.title}
+                      description={e.description}
+                    />
+                  );
+                })}
+              </div>
+            ) : activeList == "designs" ? (
+              <div className="wrap_works_list">
+                {Designs.map((e, i) => {
+                  return (
+                    <WorkDisplay
+                      to="#"
+                      tech={["figma"]}
+                      number={`0${i + 1}`}
+                      title={e.title}
+                      description={e.description}
+                    />
+                  );
+                })}
+              </div>
+            ) : activeList == "desktopapps" ? (
+              <div className="wrap_works_list">
+                {desktopapps.map((e, i) => {
+                  return (
+                    <WorkDisplay
+                      to="#"
+                      tech={["Electron", "Python", "Django"]}
+                      number={`0${i + 1}`}
+                      title={e.title}
+                      description={e.description}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="wrap_works_list"></div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 };
+const Spacer = () => {
+  return <div className="spacer"></div>;
+};
 const PortFolioItem = (props) => {
   return (
-    <div className="portfolio_item">
+    <div
+      className="portfolio_item"
+      style={{ flexDirection: props.flexDirection }}
+    >
       <div className="glass_title_cover">
         <div className="bubble1"></div>
         <div className="bubble2"></div>
@@ -197,6 +548,13 @@ const PortFolioItem = (props) => {
           <h2 className="glass_title">{props.title}</h2>
 
           <p className="glass_description">{props.description}</p>
+          <div className="project_image2">
+            <img
+              className="project_img2"
+              src={props.src}
+              alt={props.image_alt}
+            />
+          </div>
         </div>
       </div>
 
@@ -210,11 +568,13 @@ const PortfolioView = (props) => {
   return (
     <div className="main_portfolio_view">
       <PortFolioItem
+        flexDirection="row"
         title="Website for Finance Grow"
         description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design, develop and deploy backend services (APIs) with focus on high availability, low latency and scalability."
         src="./images/financeapp.webp"
       />
       <PortFolioItem
+        flexDirection="row-reverse"
         title="Website for Finance Grow"
         description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design, develop and deploy backend services (APIs) with focus on high availability, low latency and scalability."
         src="./images/financeapp.webp"
@@ -246,9 +606,11 @@ const ContactPage = () => {
           <br />
           '#positivityalltheway
         </p>
-        <a className="anchor_contact" href="#">
-          Contact Interstellar
-        </a>
+        <div className="anchor_contact_div">
+          <a className="anchor_contact" href="#">
+            Contact Interstellar
+          </a>
+        </div>
       </div>
     </div>
   );

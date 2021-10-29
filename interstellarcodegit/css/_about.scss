@@ -1,5 +1,64 @@
 @import "./variables";
 @import "./imports";
+.skillItem {
+  background-position: right;
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background: $skillItemColor;
+  background-size: 300%;
+  color: white;
+  transition: 1s ease-in-out;
+  border-radius: 10%;
+  @media screen and (max-width: $phone) {
+    height: 100px;
+    width: 100px;
+  }
+  @media screen and (max-width: $tablet) and (min-width: $phone) {
+    height: 145px;
+    width: 145px;
+  }
+}
+.skillItem:hover {
+  background-position: right;
+  transition: 1s ease-in-out;
+}
+.skillName {
+  color: white;
+  font-family: Abel;
+}
+.skillsView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+.skillPopup {
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+  left: 25%;
+  border-radius: 5%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: rgba(104, 103, 104, 0.466);
+  backdrop-filter: blur(5px);
+}
+.popupTitle {
+  color: white;
+  font-family: Poppins;
+  font-size: 18px;
+}
+.popupDescription {
+  color: $popupDescriptionColor;
+  font-family: ubuntu;
+}
 .email_div {
   display: flex;
   justify-content: center;
@@ -25,7 +84,7 @@
 }
 .about {
   // background: linear-gradient(90deg, rgba(33, 27, 70, 0.7), rgba(0, 0, 0, 0.9));
-  height: 100vh;
+  // height: 100vh;
 }
 .about_main {
   width: 70vw;
@@ -33,6 +92,9 @@
 
   flex-wrap: nowrap;
   justify-content: space-between;
+  @media screen and (max-width: $phone) {
+    width: 100vw;
+  }
 }
 .about_desc {
 }
@@ -46,17 +108,20 @@
 }
 
 .about_image {
-  width: 300px;
+  width: 150px;
   filter: saturate(70%) hue-rotate(40deg);
-  height: 200px;
+  height: 150px;
   object-fit: cover;
   border: 1px solid rgb(80, 122, 122);
-  border-radius: 5px;
+  border-radius: 50%;
   box-shadow: 2px 2px 3px rgb(156, 35, 167);
 }
 .works_list {
   background: linear-gradient(90deg, rgba(169, 3, 184, 0.705), rgb(2, 8, 65));
   width: 60vw;
+  @media screen and (max-width: $phone) {
+    width: 100vw;
+  }
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   margin-top: 2vw;
@@ -103,6 +168,33 @@
   height: 30px;
   border-radius: 5px;
 }
+.wrap_works_list {
+  height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 7px;
+    // left: -100px;
+    // position: absolute;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(192, 24, 164);
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, rgb(4, 161, 43), aqua);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(0deg, rgb(3, 231, 41), rgb(0, 102, 255));
+  }
+}
 .works_title {
   color: $page_top_color;
   font-family: Ubuntu;
@@ -118,9 +210,21 @@
 .work_desc {
   color: $paragraph_color;
   font-family: Dosis;
-  font-size: 24px;
+  font-size: 20px;
   margin-top: 5vh;
-  width: 60vw;
+  text-align: center;
+  width: 40vw;
+  @media screen and (max-width: $phone) {
+    width: 70vw;
+  }
+}
+.work_desc_wrap {
+  width: 100%;
+  // justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 .works_title_bottom_rule {
   height: 3px;
@@ -135,6 +239,9 @@
   margin-top: 7px;
   display: flex;
   width: 60vw;
+  @media screen and (max-width: $phone) {
+    width: 100vw;
+  }
 
   justify-content: center;
 }
@@ -149,4 +256,18 @@
 .scrolls_wrap {
   display: flex;
   flex-direction: row;
+}
+.tech_span {
+  color: $tech_span_color;
+  font-family: monospace;
+}
+.tech_list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 45vw;
+}
+.external_link {
+  color: rgb(175, 173, 173);
+  font-size: 20px;
 }
