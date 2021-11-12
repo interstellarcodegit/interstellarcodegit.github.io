@@ -18,8 +18,12 @@
     width: 100px;
   }
   @media screen and (max-width: $tablet) and (min-width: $phone) {
-    height: 145px;
-    width: 145px;
+    height: 125px;
+    width: 125px;
+  }
+  @media screen and (min-width: $tablet) {
+    height: 155px;
+    width: 155px;
   }
 }
 .skillItem:hover {
@@ -33,6 +37,7 @@
 .skillsView {
   display: flex;
   flex-direction: row;
+  gap: 30px;
   justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
@@ -85,13 +90,19 @@
 .about {
   // background: linear-gradient(90deg, rgba(33, 27, 70, 0.7), rgba(0, 0, 0, 0.9));
   // height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  width: 100vw;
+  max-width: 1920px;
 }
 .about_main {
   width: 70vw;
   display: flex;
 
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
   @media screen and (max-width: $phone) {
     width: 100vw;
   }
@@ -115,6 +126,10 @@
   border: 1px solid rgb(80, 122, 122);
   border-radius: 50%;
   box-shadow: 2px 2px 3px rgb(156, 35, 167);
+  @media screen and (max-width: $phone) {
+    width: 100px;
+    height: 100px;
+  }
 }
 .works_list {
   background: linear-gradient(90deg, rgba(169, 3, 184, 0.705), rgb(2, 8, 65));
@@ -180,19 +195,21 @@
 
   /* Track */
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(192, 24, 164);
+    box-shadow: inset 0 0 5px rgb(24, 158, 192);
     border-radius: 10px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(0deg, rgb(4, 161, 43), aqua);
+    background: linear-gradient(0deg, rgb(146, 18, 56), aqua);
+    background-size: 300%;
+    background-position: left;
     border-radius: 10px;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(0deg, rgb(3, 231, 41), rgb(0, 102, 255));
+    background-position: right;
   }
 }
 .works_title {
@@ -270,4 +287,60 @@
 .external_link {
   color: rgb(175, 173, 173);
   font-size: 20px;
+}
+.work_images {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    // left: -100px;
+    // position: absolute;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 5px rgb(192, 24, 164);
+    background: $scrollbar_background_x;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, rgb(4, 161, 43), aqua);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(0deg, rgb(3, 231, 41), rgb(0, 102, 255));
+  }
+}
+.workImageDiv {
+  height: $workImageHeight;
+  width: $workImageWidth;
+  overflow: hidden;
+}
+.workImage {
+  object-fit: contain;
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+  filter: grayscale(30%);
+  transition: 1s;
+  margin-left: 10px;
+}
+.workImage:hover {
+  height: calc($workImageHeight - 3px);
+  width: calc($workImageWidth - 3px);
+  object-fit: contain;
+  opacity: 1;
+  filter: grayscale(0%) brightness(120%);
+  transition: 1s;
+}
+.workImageDiv:hover {
+  height: calc($workImageHeight - 3px);
+  width: calc($workImageWidth - 3px);
 }

@@ -1,12 +1,12 @@
 @import "./variables";
 .main_portfolio_view {
   // height: 50vh;
-  max-width: 2060px;
+  // max-width: 2060px;
   position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+
+  @media screen and (max-width: $phone) {
+    width: 100vw;
+  }
 }
 .bubble1 {
   height: $bubble_height;
@@ -26,19 +26,40 @@
   border-radius: 50%;
   background: linear-gradient(45deg, aqua, blue);
 }
-
+.portfolio_item {
+  @media screen and (max-width: $phone) {
+    width: 100vw;
+  }
+  display: flex;
+  margin-bottom: 1em;
+}
+.project_img {
+  height: 250px;
+  width: 350px;
+  @media screen and (max-width: $phone) {
+    display: none;
+  }
+}
+.project_image {
+  @media screen and (max-width: $phone) {
+    display: none;
+  }
+}
 .float_glass {
-  min-width: fit-content;
-  height: 20vw;
-  width: 30vw;
+  height: $floatGlassWidth/2;
+  width: $floatGlassWidth;
   position: relative;
   z-index: 0;
   @media screen and (max-width: $phone) {
     width: 100vw;
     height: 40vh;
   }
+  @media screen and (max-width: $tablet) and(min-width:$phone) {
+    width: 30vw;
+    height: 20vh;
+  }
   backdrop-filter: blur(5px);
-  border-radius: 20px;
+  border-radius: 4px;
   background: linear-gradient(
     45deg,
     rgba(3, 3, 15, 0.692),
@@ -49,39 +70,12 @@
 .float_glass:hover {
   transition: 2s;
 }
-.portfolio_item {
-  display: flex;
-  width: 60%;
-  @media screen and (max-width: $phone) {
-    width: 100vw;
-  }
-  margin-bottom: 2vh;
-  flex-wrap: nowrap;
-}
-.project_image {
-  width: 100%;
-  height: 100%;
-  left: -3vw;
-  position: relative;
-  z-index: -1;
-  top: 30px;
-}
-.project_img {
-  @media screen and (max-width: $phone) {
-    display: none;
-  }
-  width: 100%;
-  border-radius: 5%;
-  border: 1px solid rgb(28, 51, 4);
-  height: 100%;
-  object-fit: contain;
-}
 
 .project_image2 {
   width: 80%;
   height: 50%;
   @media screen and (min-width: $phone) {
-    position: static;
+    // position: static;
   }
 
   z-index: -1;
@@ -113,18 +107,23 @@
   transition: 2s;
 }
 .glass_description {
-  color: rgb(130, 159, 168);
+  color: rgb(224, 224, 224);
   font-size: 18px;
-  width: 28vw;
+  width: 230px;
   @media screen and (max-width: $phone) {
     width: 100vw;
+    font-size: 14px;
+  }
+  @media screen and (max-width: $tablet) {
+    width: calc($tablet / 3);
+    font-size: 13px;
   }
   font-family: Abel;
 }
 .glass_title_cover {
   position: relative;
-  height: fit-content;
-  width: fit-content;
+  height: $floatGlassWidth/2;
+  width: $floatGlassWidth;
 }
 
 .contact_description {

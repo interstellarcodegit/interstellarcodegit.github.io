@@ -22,6 +22,7 @@
           box-sizing: border-box;
 }
 
+/* ./src/index.css */
 .skillItem {
   background-position: right;
   height: 200px;
@@ -53,8 +54,15 @@
 
 @media screen and (max-width: 768px) and (min-width: 480px) {
   .skillItem {
-    height: 145px;
-    width: 145px;
+    height: 125px;
+    width: 125px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .skillItem {
+    height: 155px;
+    width: 155px;
   }
 }
 
@@ -77,6 +85,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  gap: 30px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -165,6 +174,17 @@
   color: #9ba1a3;
 }
 
+.about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  max-width: 1920px;
+}
+
 .about_main {
   width: 70vw;
   display: -webkit-box;
@@ -172,9 +192,13 @@
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 @media screen and (max-width: 480px) {
@@ -201,6 +225,13 @@
   border-radius: 50%;
   -webkit-box-shadow: 2px 2px 3px #9c23a7;
           box-shadow: 2px 2px 3px #9c23a7;
+}
+
+@media screen and (max-width: 480px) {
+  .about_image {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .works_list {
@@ -292,20 +323,21 @@
 }
 
 .wrap_works_list::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 5px #c018a4;
-          box-shadow: inset 0 0 5px #c018a4;
+  -webkit-box-shadow: inset 0 0 5px #189ec0;
+          box-shadow: inset 0 0 5px #189ec0;
   border-radius: 10px;
 }
 
 .wrap_works_list::-webkit-scrollbar-thumb {
-  background: -webkit-gradient(linear, left bottom, left top, from(#04a12b), to(aqua));
-  background: linear-gradient(0deg, #04a12b, aqua);
+  background: -webkit-gradient(linear, left bottom, left top, from(#921238), to(aqua));
+  background: linear-gradient(0deg, #921238, aqua);
+  background-size: 300%;
+  background-position: left;
   border-radius: 10px;
 }
 
 .wrap_works_list::-webkit-scrollbar-thumb:hover {
-  background: -webkit-gradient(linear, left bottom, left top, from(#03e729), to(#0066ff));
-  background: linear-gradient(0deg, #03e729, #0066ff);
+  background-position: right;
 }
 
 .works_title {
@@ -431,6 +463,79 @@
   font-size: 20px;
 }
 
+.work_images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow-x: scroll;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+.work_images::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.work_images::-webkit-scrollbar-track {
+  background: -webkit-gradient(linear, left top, right top, from(black), to(purple));
+  background: linear-gradient(90deg, black, purple);
+  border-radius: 10px;
+}
+
+.work_images::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left bottom, left top, from(#04a12b), to(aqua));
+  background: linear-gradient(0deg, #04a12b, aqua);
+  border-radius: 10px;
+}
+
+.work_images::-webkit-scrollbar-thumb:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#03e729), to(#0066ff));
+  background: linear-gradient(0deg, #03e729, #0066ff);
+}
+
+.workImageDiv {
+  height: 100px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.workImage {
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 0.9;
+  height: 100%;
+  width: 100%;
+  -webkit-filter: grayscale(30%);
+          filter: grayscale(30%);
+  -webkit-transition: 1s;
+  transition: 1s;
+  margin-left: 10px;
+}
+
+.workImage:hover {
+  height: calc($workImageHeight - 3px);
+  width: calc($workImageWidth - 3px);
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 1;
+  -webkit-filter: grayscale(0%) brightness(120%);
+          filter: grayscale(0%) brightness(120%);
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.workImageDiv:hover {
+  height: calc($workImageHeight - 3px);
+  width: calc($workImageWidth - 3px);
+}
+
 .nav-main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -502,6 +607,7 @@
   color: #a39d9d;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  opacity: 0;
   font-family: Dosis;
 }
 
@@ -542,21 +648,13 @@
 }
 
 .main_portfolio_view {
-  max-width: 2060px;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .main_portfolio_view {
+    width: 100vw;
+  }
 }
 
 .bubble1 {
@@ -577,17 +675,44 @@
   background: linear-gradient(45deg, aqua, blue);
 }
 
+.portfolio_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio_item {
+    width: 100vw;
+  }
+}
+
+.project_img {
+  height: 250px;
+  width: 350px;
+}
+
+@media screen and (max-width: 480px) {
+  .project_img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .project_image {
+    display: none;
+  }
+}
+
 .float_glass {
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-  height: 20vw;
-  width: 30vw;
+  height: 125px;
+  width: 250px;
   position: relative;
   z-index: 0;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-  border-radius: 20px;
+  border-radius: 4px;
   background: linear-gradient(45deg, rgba(3, 3, 15, 0.692), rgba(100, 100, 104, 0.562));
   -webkit-transition: 2s;
   transition: 2s;
@@ -600,61 +725,22 @@
   }
 }
 
+@media screen and (max-width: 768px) and (min-width: 480px) {
+  .float_glass {
+    width: 30vw;
+    height: 20vh;
+  }
+}
+
 .float_glass:hover {
   -webkit-transition: 2s;
   transition: 2s;
-}
-
-.portfolio_item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 60%;
-  margin-bottom: 2vh;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-}
-
-@media screen and (max-width: 480px) {
-  .portfolio_item {
-    width: 100vw;
-  }
-}
-
-.project_image {
-  width: 100%;
-  height: 100%;
-  left: -3vw;
-  position: relative;
-  z-index: -1;
-  top: 30px;
-}
-
-.project_img {
-  width: 100%;
-  border-radius: 5%;
-  border: 1px solid #1c3304;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
-@media screen and (max-width: 480px) {
-  .project_img {
-    display: none;
-  }
 }
 
 .project_image2 {
   width: 80%;
   height: 50%;
   z-index: -1;
-}
-
-@media screen and (min-width: 480px) {
-  .project_image2 {
-    position: static;
-  }
 }
 
 .project_img2 {
@@ -692,26 +778,30 @@
 }
 
 .glass_description {
-  color: #829fa8;
+  color: #e0e0e0;
   font-size: 18px;
-  width: 28vw;
+  width: 230px;
   font-family: Abel;
 }
 
 @media screen and (max-width: 480px) {
   .glass_description {
     width: 100vw;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .glass_description {
+    width: calc($tablet / 3);
+    font-size: 13px;
   }
 }
 
 .glass_title_cover {
   position: relative;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  height: 125px;
+  width: 250px;
 }
 
 .contact_description {
@@ -815,6 +905,7 @@ body {
 
 body::-webkit-scrollbar {
   width: 7px;
+  height: 5px;
 }
 
 body::-webkit-scrollbar-track {
@@ -1050,6 +1141,12 @@ body::-webkit-scrollbar-thumb:hover {
 .cover {
   height: 100%;
   margin-top: 3vw;
+}
+
+@media screen and (max-width: 480px) {
+  .cover {
+    width: 50vw;
+  }
 }
 
 .card-bd {

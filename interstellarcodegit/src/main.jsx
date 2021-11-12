@@ -1,13 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "../css/style.scss";
 import App from "./App";
 import gsap from "gsap";
 const entry = document.querySelector("#main");
 
 const Main = () => {
+  React.useEffect(() => {
+    gsap.to("#bd-div", {
+      opacity: 1,
+      duration: 2,
+    });
+  }, []);
   return (
-    <div id="bd-div">
+    <div
+      id="bd-div"
+      style={{
+        opacity: 0,
+      }}
+    >
       <Nav />
       <div className="main_stuff">
         <Preamble />
@@ -27,6 +39,14 @@ const Main = () => {
 var i = 1;
 var nav_animation_duration = 0.5;
 const Nav = () => {
+  React.useLayoutEffect(() => {
+    gsap.to("#anchor", {
+      opacity: 1,
+      duration: 2,
+      delay: 2,
+      stagger: 0.3,
+    });
+  }, []);
   // const [open, setOpen] = React.useState(false);
   React.useEffect(() => {
     document.querySelector(".nav_toggler").addEventListener("click", () => {
@@ -79,32 +99,33 @@ const Nav = () => {
       </div>
       <ul className="nav-items">
         <li>
-          <a id="anchor" href="#" className="active">
+          <a id="anchor" href="#preamble" className="active">
             Home
           </a>
         </li>
         <li>
-          <a id="anchor" href="#">
-            Projects
-          </a>
-        </li>
-        <li>
-          <a id="anchor" href="#">
-            Experience
-          </a>
-        </li>
-        <li>
-          <a id="anchor" href="#">
-            Blog
-          </a>
-        </li>
-        <li>
-          <a id="anchor" href="#">
+          <a id="anchor" href="#about">
             About
           </a>
         </li>
         <li>
+          <a id="anchor" href="#portfolio">
+            Projects
+          </a>
+        </li>
+        <li>
+          <a id="anchor" href="#skills">
+            Skills
+          </a>
+        </li>
+        {/* <li>
           <a id="anchor" href="#">
+            Blog
+          </a>
+        </li> */}
+
+        <li>
+          <a id="anchor" href="#contact">
             Contact
           </a>
         </li>
@@ -115,7 +136,7 @@ const Nav = () => {
 };
 const Preamble = () => {
   return (
-    <div className="preambles-main">
+    <div className="preambles-main" id="preamble">
       <div className="wrap_div">
         <div className="cover">
           <div className="pre-header-div">
@@ -136,10 +157,10 @@ const Preamble = () => {
           </div>
 
           <br />
-          <div className="thisis">
+          {/* <div className="thisis">
             <p className="pr-info">And this is </p>
             <span className="name_span">Interstellar Code</span>
-          </div>
+          </div> */}
           <div className="top_description">
             {/* <p className="top_top_description">
               I am a <span className="career-span">web developer</span>
@@ -168,8 +189,14 @@ const PageTop = (props) => {
 };
 const SkillItem = (props) => {
   return (
-    <div className="skillItem">
-      <span className="skillName">{props.name}</span>
+    <div className="skillItem group">
+      <div className="flex flex-col">
+        <span className="skillName">{props.name}</span>
+        <img
+          className=" opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-3 transition duration-1000"
+          src={`../images/${props.image}`}
+        />
+      </div>
     </div>
   );
 };
@@ -190,82 +217,87 @@ const AboutPage = () => {
   //   }, 5000);
   // };
   return (
-    <div className="about">
-      <PageTop page="About" />
+    <div className="about" id="about">
       <div className="about_main">
+        <PageTop page="About" />
         <div className="about_desc">
           <p>
-            Hello world!I am Kelvin Ngeno a visionary , creative and focused web
-            developer
+            Hello !I am Kelvin Ngeno a visionary , creative and focused web
+            developer....
             <br />
             <br />
             I design, develop and deploy backend services (APIs) with focus on
             high availability, low latency and scalability.
             <br />
             <br />
-            I also frequently write client-facing code that consume web
-            services.
+            I write client-facing code that consume web services.
             <br />
-            <br />
-            Ive worked with technologies such as Python , Javascript , Web
-            frameworks like Django and
-            <span className="many_more_span">many more</span>
+            <br />I work with technologies such as Python , Javascript , and Web
+            frameworks like Django and many others
           </p>
         </div>
-        {/* <div className="about_image_div">
-          <img className="about_image" src="../images/me.jpg" />
-          <div className="email_div">
-            <div className="email_wrap">
-              <span className="email_span">interstellarcg@gmail.com</span>
-              <div className="email_span_rule"></div>
-            </div>
+        <PageTop page="My Skills" />
+        <div
+          className="skillPopup"
+          style={{ display: visible ? "flex" : "none" }}
+        >
+          <div className="skillPopupMain">
+            <h3 className="popupTitle">{ActiveSkill}</h3>
+            <p className="popupDescription">{ActiveSkillDesc}</p>
           </div>
-        </div> */}
-      </div>
-
-      <PageTop page="My Skills" />
-      <div
-        className="skillPopup"
-        style={{ display: visible ? "flex" : "none" }}
-      >
-        <div className="skillPopupMain">
-          <h3 className="popupTitle">{ActiveSkill}</h3>
-          <p className="popupDescription">{ActiveSkillDesc}</p>
         </div>
-      </div>
-      <div className="skillsView">
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="Javascript"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="React "
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="Html"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="CSS"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="Python"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="Django"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="Sass"
-        />
-        <SkillItem
-          description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="React-Native"
-        />
+        <div className="skillsView" id="skills">
+          <SkillItem
+            image="javascript3.svg"
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Javascript"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="React "
+            image="react.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Html"
+            image="html5.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="CSS"
+            image="css.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Python"
+            image="python.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Django"
+            image="django.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Sass"
+            image="sass.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="React-Native"
+            image="react.svg"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Django Rest"
+            image="djangorest.png"
+          />
+          <SkillItem
+            description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
+            name="Figma"
+            image="figma.svg"
+          />
+        </div>
       </div>
     </div>
   );
@@ -291,9 +323,22 @@ const WorkDisplay = (props) => {
               return <span className="tech_span">{e}</span>;
             })}
             <a href={props.to} className="external_link">
-              <i class="fas fa-external-link-alt"></i>
+              <i className="fas fa-external-link-alt"></i>
             </a>
           </div>
+        </div>
+        <div className="work_images">
+          {props.images !== null && props.images !== undefined ? (
+            props.images.map((e, i) => {
+              return (
+                <div className="workImageDiv">
+                  <img src={e.src} alt={e.alt} className="workImage" />
+                </div>
+              );
+            })
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>
@@ -305,22 +350,69 @@ const desktopapps = [
     title: "Notehandy Desktop",
     description:
       "An app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+    images: [
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+    ],
   },
   {
     title: "Interstellar  Music",
     description:
       "A beautiful music desktop app with a beautiful app user interface which is fully interactive",
+    images: [
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+    ],
   },
 ];
 const Designs = [
   {
     title: "Repent app",
-    image: <img src="../images/web.jpg" />,
+    images: [
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+    ],
+
     description: "A design for the repent app",
   },
   {
     title: "My Portfolio",
-    image: <img src="../images/web.jpg" />,
+    images: [
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+    ],
   },
 ];
 
@@ -353,6 +445,12 @@ const apps = [
     title: "Notehandy",
     description:
       "An app for taking notes. It enables saving the written  notes on the cloud to avoid inconveniences",
+    images: [
+      {
+        src: "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_960_720.jpg",
+        alt: "My design",
+      },
+    ],
   },
   {
     title: "Repent App",
@@ -475,6 +573,7 @@ Designed and created the website to help the association be visible on the inter
                       to="#"
                       tech={["React-Native", "Python", "Django"]}
                       number={`0${i + 1}`}
+                      images={e.images}
                       title={e.title}
                       description={e.description}
                     />
@@ -489,6 +588,7 @@ Designed and created the website to help the association be visible on the inter
                       to="#"
                       tech={["React-Native", "Python", "Django"]}
                       number={`0${i + 1}`}
+                      images={e.images}
                       title={e.title}
                       description={e.description}
                     />
@@ -503,6 +603,7 @@ Designed and created the website to help the association be visible on the inter
                       to="#"
                       tech={["figma"]}
                       number={`0${i + 1}`}
+                      images={e.images}
                       title={e.title}
                       description={e.description}
                     />
@@ -517,6 +618,7 @@ Designed and created the website to help the association be visible on the inter
                       to="#"
                       tech={["Electron", "Python", "Django"]}
                       number={`0${i + 1}`}
+                      images={e.images}
                       title={e.title}
                       description={e.description}
                     />
@@ -547,7 +649,8 @@ const PortFolioItem = (props) => {
         <div className="float_glass">
           <h2 className="glass_title">{props.title}</h2>
 
-          <p className="glass_description">{props.description}</p>
+          <p className="font-abel text-gray-100 ">{props.description}</p>
+
           <div className="project_image2">
             <img
               className="project_img2"
@@ -566,17 +669,17 @@ const PortFolioItem = (props) => {
 };
 const PortfolioView = (props) => {
   return (
-    <div className="main_portfolio_view">
+    <div id="portfolio" className="main_portfolio_view">
       <PortFolioItem
         flexDirection="row"
         title="Website for Finance Grow"
-        description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design, develop and deploy backend services (APIs) with focus on high availability, low latency and scalability."
+        description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design, "
         src="./images/financeapp.webp"
       />
       <PortFolioItem
         flexDirection="row-reverse"
         title="Website for Finance Grow"
-        description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design, develop and deploy backend services (APIs) with focus on high availability, low latency and scalability."
+        description="Hello world!I am Kelvin Ngeno a visionary , creative and focused web developer I design,"
         src="./images/financeapp.webp"
       />
     </div>
@@ -595,19 +698,24 @@ const PortfolioPage = () => {
 
 const ContactPage = () => {
   return (
-    <div className="getintouch">
+    <div className="getintouch" id="contact">
       <PageTop page="Get in Touch" />
       <div className="main_contact_view">
-        <p className="contact_description">
-          For about 2 hours a day, I am consulting for GraphQL and Ruby on Rails
+        <p className=" text-gray-400 font-dosis text-2xl w-160px text-center">
+          I do make high end web and mobile apps of all types.
           <br />
-          projects for $80/hr Contact me below for a booking. And if you just
-          want to say hi or if you have any question, my inbox is open! :)
+          for about 2 hours a day , I teach upcoming software engineers some of
+          the technologies I use
+          <br /> Feel free to contact me in case you need one of the services or
+          if you want to learn any of the technologies I use.
           <br />
-          '#positivityalltheway
+          You can also ask questions, clarifications or even say Hi to me.
         </p>
         <div className="anchor_contact_div">
-          <a className="anchor_contact" href="#">
+          <a
+            className="anchor_contact"
+            href="mailto:techinterstellarcg@gmail.com"
+          >
             Contact Interstellar
           </a>
         </div>
