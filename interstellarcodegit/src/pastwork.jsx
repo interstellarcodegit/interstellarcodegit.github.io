@@ -145,7 +145,7 @@ export const Pastwork = () => {
   }, []);
   return (
     <div className="past_work">
-      <PageTop page="My Past Work" />
+      <PageTop page="My  Work" />
       <div className="past_work_main_page">
         <div className="works_list">
           <ul>

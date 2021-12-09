@@ -10,14 +10,14 @@ export const Preamble = () => {
     gsap.from(".header_skill", {
       opacity: 0,
       stagger: 0.5,
-      duration: 2.3,
-      ease: "bounce",
+      duration: 1,
     });
     gsap.from(".lower_top_description", {
       opacity: 0,
+      x: -22,
 
-      duration: 2.3,
-      ease: "bounce",
+      duration: 0.6,
+
       delay: 2,
     });
   });
