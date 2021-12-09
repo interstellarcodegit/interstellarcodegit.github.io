@@ -19,7 +19,8 @@ html {
 }
 @import "./variables";
 body {
-  background: $bgcolor_dark;
+  // background: $bgcolor_dark;
+  background: url("../images/Hexagon.svg");
   // max-width: 100vw;
   &::-webkit-scrollbar {
     width: 7px;
@@ -106,6 +107,15 @@ body {
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  background-image: url(../images/mainWave.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#mainWave {
+  fill: url(#header-shape-gradient), rebeccapurple;
+}
+#bd-div {
+  background: linear-gradient(45deg, black, rgba(35, 1, 66, 0.6));
 }
 .preambles-main {
   // background: url("../images/logome.png");

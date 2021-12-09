@@ -1,0 +1,9 @@
+<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" >
+ <defs>
+    <linearGradient id="header-shape-gradient" x2="0.35" y2="1">
+        <stop offset="0%" stop-color="var(--color-stop)" />
+        <stop offset="30%" stop-color="var(--color-stop)" />
+        <stop offset="100%" stop-color="var(--color-bot)" />
+      </linearGradient>
+  </defs>
+<path d="M0 448L50 438.3C100 428.7 200 409.3 300 416C400 422.7 500 455.3 600 453.7C700 452 800 416 850 398L900 380L900 601L850 601C800 601 700 601 600 601C500 601 400 601 300 601C200 601 100 601 50 601L0 601Z" fill="#120233" stroke-linecap="round" stroke-linejoin="miter"></path></svg>

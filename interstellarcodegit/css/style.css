@@ -37,7 +37,7 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 10px;
-  background: linear-gradient(45deg, black, purple, orange);
+  background: linear-gradient(45deg, #0c010e, #360396, #00a2ff);
   background-size: 300%;
   color: white;
   -webkit-transition: 1s ease-in-out;
@@ -183,6 +183,10 @@
           justify-content: center;
   width: 100vw;
   max-width: 1920px;
+}
+
+.SkillsMainView {
+  max-width: 70vw;
 }
 
 .about_main {
@@ -484,8 +488,8 @@
 }
 
 .work_images::-webkit-scrollbar-track {
-  background: -webkit-gradient(linear, left top, right top, from(black), to(purple));
-  background: linear-gradient(90deg, black, purple);
+  background: -webkit-gradient(linear, left top, right top, from(black), to(#650ca0));
+  background: linear-gradient(90deg, black, #650ca0);
   border-radius: 10px;
 }
 
@@ -706,7 +710,7 @@
 }
 
 .float_glass {
-  height: 125px;
+  height: calc($floatGlassWidth / 2);
   width: 250px;
   position: relative;
   z-index: 0;
@@ -800,7 +804,7 @@
 
 .glass_title_cover {
   position: relative;
-  height: 125px;
+  height: calc($floatGlassWidth / 2);
   width: 250px;
 }
 
@@ -897,7 +901,7 @@ html {
 }
 
 body {
-  background: linear-gradient(45deg, #410b52, black, #01050e, #290633);
+  background: url("../images/Hexagon.svg");
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -1035,6 +1039,17 @@ body::-webkit-scrollbar-thumb:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background-image: url(../images/mainWave.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#mainWave {
+  fill: url(#header-shape-gradient), rebeccapurple;
+}
+
+#bd-div {
+  background: linear-gradient(45deg, black, rgba(35, 1, 66, 0.6));
 }
 
 .preambles-main {
