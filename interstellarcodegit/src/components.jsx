@@ -18,14 +18,16 @@ export const PageTop = (props) => {
 };
 export const SkillItem = (props) => {
   return (
-    <div className="skillItem group">
+    <div className="skillItem group m-3">
       <div className="flex flex-col">
-        {/* <span>Level{props.level}</span> */}
         <span className="skillName">{props.name}</span>
         <img
           className=" opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-3 transition duration-1000"
-          src={`../images/${props.image}`}
+          src={props.image}
         />
+        <span className=" transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-4 duration-500">
+          {props.level}
+        </span>
       </div>
     </div>
   );

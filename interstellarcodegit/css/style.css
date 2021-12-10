@@ -211,6 +211,10 @@
   }
 }
 
+.about_desc {
+  font-size: 20px;
+}
+
 .about_desc p {
   color: #719ba0;
   font-size: 20px;
@@ -889,6 +893,12 @@
   font-size: 70%;
   text-decoration: none;
   color: #cacfd3;
+}
+
+.past_work {
+  background: rgba(0, 0, 0, 0.14);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 root {

@@ -6,6 +6,15 @@ import App from "./App";
 import gsap from "gsap";
 import { PageTop, SkillItem } from "./components";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import rnsvg from "../images/react.svg";
+import figsvg from "../images/figma.svg";
+import djsvg from "../images/django.svg";
+import restpng from "../images/djangorest.png";
+import jssvg from "../images/javascript2.svg";
+import sassvg from "../images/sass.svg";
+import cssvg from "../images/css.svg";
+import htmlsvg from "../images/html5.svg";
+import pysvg from "../images/python.svg";
 export const AboutPage = () => {
   const [ActiveSkill, setActiveSkill] = React.useState("");
   const [ActiveSkillDesc, setActiveSkillDesc] = React.useState("");
@@ -26,7 +35,7 @@ export const AboutPage = () => {
       <div className="about_main">
         <PageTop page="About" />
         <div className="text-gray-300">
-          <p className="about_desc font-dosis">
+          <p className="about_desc font-dosis ">
             Hello !I am Kelvin Ngeno a visionary , creative and focused web
             developer....
             <br />
@@ -88,66 +97,66 @@ export const SkillsMainView = () => {
     <div className="SkillsMainView flex flex-col justify-center w-full">
       <PageTop page="My Skills" />
 
-      <div className="flex flex-wrap justify-between" id="Theskills">
+      <div className="flex flex-wrap justify-center" id="Theskills">
         <SkillItem
           level="Pro"
-          image="javascript3.svg"
+          image={jssvg}
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Javascript"
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
-          name="React "
-          image="react.svg"
+          name="React"
+          image={rnsvg}
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Html"
-          image="html5.svg"
+          image={htmlsvg}
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="CSS"
-          image="css.svg"
+          image={cssvg}
         />
         <SkillItem
           level="Advanced"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Python"
-          image="python.svg"
+          image={pysvg}
         />
         <SkillItem
           level="Advanced"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Django"
-          image="django.svg"
+          image={djsvg}
         />
         <SkillItem
           level="Intermediate"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Sass"
-          image="sass.svg"
+          image={sassvg}
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="React-Native"
-          image="react.svg"
+          image={rnsvg}
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Django Rest"
-          image="djangorest.png"
+          image={restpng}
         />
         <SkillItem
           level="Pro"
           description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi eum molestiae quisquam, earum obcaecati architecto nemo consequatur amet odit nostrum"
           name="Figma"
-          image="figma.svg"
+          image={figsvg}
         />
       </div>
     </div>

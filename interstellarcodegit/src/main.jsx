@@ -37,7 +37,7 @@ const Main = () => {
         <SkillsMainView />
         <Pastwork />
         <Spacer />
-        <PortfolioPage />
+
         <Spacer />
         <ContactPage />
       </div>

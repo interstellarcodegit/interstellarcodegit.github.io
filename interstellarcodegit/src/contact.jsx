@@ -10,15 +10,16 @@ export const ContactPage = () => {
     <div className="getintouch" id="contact">
       <PageTop page="Get in Touch" />
       <div className="main_contact_view">
-        <p className=" text-gray-400 font-dosis text-2xl w-160px text-center">
+        <p className=" text-gray-100 font-dosis text-xl w-160px text-center">
           I do make high end web and mobile apps of all types.
           <br />
-          for about 2 hours a day , I teach upcoming software engineers some of
-          the technologies I use
+          <br />
+          I also freelance on platforms such as fiverr
           <br /> Feel free to contact me in case you need one of the services or
           if you want to learn any of the technologies I use.
           <br />
-          You can also ask questions, clarifications or even say Hi to me.
+          You can also ask questions, clarifications or even say Hi to me. You
+          can also hire me to teach you app or full stack web development
         </p>
         <div className="anchor_contact_div">
           <a

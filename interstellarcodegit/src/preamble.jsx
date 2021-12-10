@@ -4,6 +4,7 @@ import "./index.css";
 import "../css/style.scss";
 import App from "./App";
 import gsap from "gsap";
+import me from "../images/me.jpg";
 import { Spacer } from "./components";
 export const Preamble = () => {
   React.useEffect(() => {
@@ -56,7 +57,7 @@ export const Preamble = () => {
             </p>
           </div>
         </div>
-        <img className="about_image" src="../images/me.jpg" />
+        <img className="about_image" src={me} />
       </div>
     </div>
   );
