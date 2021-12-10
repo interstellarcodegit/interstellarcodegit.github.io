@@ -189,6 +189,12 @@
   max-width: 70vw;
 }
 
+@media screen and (max-width: 480px) {
+  .SkillsMainView {
+    max-width: 100vw;
+  }
+}
+
 .about_main {
   width: 70vw;
   display: -webkit-box;

@@ -34,7 +34,7 @@ export const AboutPage = () => {
     <div className="about" id="about">
       <div className="about_main">
         <PageTop page="About" />
-        <div className="text-gray-600">
+        <div className="text-gray-400">
           <p className="about_desc font-dosis ">
             I am Interstellar a visionary , creative and focused web
             developer....
