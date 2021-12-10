@@ -46,7 +46,7 @@ body {
   &::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(0deg, rgb(3, 231, 41), rgb(0, 102, 255));
   }
-  // overflow: hidden;
+  overflow-x: hidden;
 }
 .work_display {
   min-height: 55vh;
@@ -128,6 +128,10 @@ body {
     width: 80vw;
     margin-top: 4vh;
   }
+  @media screen and (max-width: $tablet) {
+    width: 80vw;
+    margin-top: 4vh;
+  }
 }
 .wrap_div {
   display: flex;
@@ -136,6 +140,8 @@ body {
   flex-direction: row;
   width: 70vw;
   height: 100%;
+  @media screen and (max-width: $tablet) {
+  }
 }
 #pre-header {
   font-size: 40px;
@@ -208,6 +214,9 @@ body {
   // margin-left: 10vw;
   margin-top: 3vw;
   @media screen and (max-width: $phone) {
+    width: 50vw;
+  }
+  @media screen and (max-width: $tablet) {
     width: 50vw;
   }
 }

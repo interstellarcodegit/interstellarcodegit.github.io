@@ -144,7 +144,7 @@ export const Pastwork = () => {
     });
   }, []);
   return (
-    <div className="past_work">
+    <div className="past_work" id="past_work">
       <PageTop page="My  Work" />
       <div className="past_work_main_page">
         <div className="works_list">

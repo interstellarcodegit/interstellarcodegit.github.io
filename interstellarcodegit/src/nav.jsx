@@ -5,6 +5,7 @@ import "../css/style.scss";
 import App from "./App";
 import gsap from "gsap";
 import { PageTop } from "./components";
+import logo from "../images/log.png";
 export const Nav = () => {
   React.useLayoutEffect(() => {
     gsap.to("#anchor", {
@@ -57,7 +58,7 @@ export const Nav = () => {
   return (
     <nav className="nav-main">
       <div className="top_logo_div">
-        <img src="images/log.png" className="logo" />
+        <img src={logo} className="logo" />
         <div className="nav_toggler">
           <div className="bar bar_one"></div>
           <div className="bar bar_center"></div>
@@ -76,13 +77,13 @@ export const Nav = () => {
           </a>
         </li>
         <li>
-          <a id="anchor" href="#portfolio">
-            Projects
+          <a id="anchor" href="#skills">
+            Skills
           </a>
         </li>
         <li>
-          <a id="anchor" href="#skills">
-            Skills
+          <a id="anchor" href="#past_work">
+            Projects
           </a>
         </li>
         {/* <li>
@@ -90,7 +91,6 @@ export const Nav = () => {
             Blog
           </a>
         </li> */}
-
         <li>
           <a id="anchor" href="#contact">
             Contact

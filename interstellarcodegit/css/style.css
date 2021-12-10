@@ -915,6 +915,7 @@ body {
   /* Track */
   /* Handle */
   /* Handle on hover */
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -1074,6 +1075,13 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .preambles-main {
+    width: 80vw;
+    margin-top: 4vh;
+  }
+}
+
 .wrap_div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1169,6 +1177,12 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media screen and (max-width: 480px) {
+  .cover {
+    width: 50vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .cover {
     width: 50vw;
   }

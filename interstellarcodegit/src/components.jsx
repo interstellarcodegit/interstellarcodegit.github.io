@@ -25,7 +25,7 @@ export const SkillItem = (props) => {
           className=" opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-y-3 transition duration-1000"
           src={props.image}
         />
-        <span className=" transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-4 duration-500">
+        <span className=" transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-4 duration-500 font-abel text-sm ">
           {props.level}
         </span>
       </div>

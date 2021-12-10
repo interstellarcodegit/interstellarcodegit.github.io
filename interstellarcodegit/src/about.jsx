@@ -10,7 +10,7 @@ import rnsvg from "../images/react.svg";
 import figsvg from "../images/figma.svg";
 import djsvg from "../images/django.svg";
 import restpng from "../images/djangorest.png";
-import jssvg from "../images/javascript2.svg";
+import jssvg from "../images/mainJsLogo.svg";
 import sassvg from "../images/sass.svg";
 import cssvg from "../images/css.svg";
 import htmlsvg from "../images/html5.svg";
@@ -34,9 +34,9 @@ export const AboutPage = () => {
     <div className="about" id="about">
       <div className="about_main">
         <PageTop page="About" />
-        <div className="text-gray-300">
+        <div className="text-gray-600">
           <p className="about_desc font-dosis ">
-            Hello !I am Kelvin Ngeno a visionary , creative and focused web
+            I am Interstellar a visionary , creative and focused web
             developer....
             <br />
             <br />
@@ -47,7 +47,10 @@ export const AboutPage = () => {
             I write client-facing code that consume web services.
             <br />
             <br />I work with technologies such as Python , Javascript , and Web
-            frameworks like Django and many others
+            frameworks like Django and many others <br /> I own my company
+            called Interstellar Code and if you feel that you need to rejuvenate
+            your business by having a wonderful app or website that wins the
+            attention of your customers , I'm here for you
           </p>
         </div>
       </div>
@@ -94,7 +97,10 @@ export const SkillsMainView = () => {
     );
   }, []);
   return (
-    <div className="SkillsMainView flex flex-col justify-center w-full">
+    <div
+      className="SkillsMainView flex flex-col justify-center w-full"
+      id="skills"
+    >
       <PageTop page="My Skills" />
 
       <div className="flex flex-wrap justify-center" id="Theskills">

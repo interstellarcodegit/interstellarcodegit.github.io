@@ -11,6 +11,7 @@ export const Preamble = () => {
     gsap.from(".header_skill", {
       opacity: 0,
       stagger: 0.5,
+      left: -5,
       duration: 1,
     });
     gsap.from(".lower_top_description", {
@@ -45,10 +46,7 @@ export const Preamble = () => {
           </div>
 
           <br />
-          {/* <div className="thisis">
-              <p className="pr-info">And this is </p>
-              <span className="name_span">Interstellar Code</span>
-            </div> */}
+
           <div className="top_description">
             <p className="lower_top_description">
               I'm a Software Engineer and Internet Entrepreneur I do design, I
